@@ -1,0 +1,12 @@
+.signin_head {
+    font-family: "Oxygen", sans-serif;
+    font-weight: 500;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-top: 5rem;
+}
+
+.loginForm {
+    width: 40%;
+    max-width: 50%;
+}

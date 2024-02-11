@@ -1,0 +1,9 @@
+.userTypeBox {
+    cursor: pointer;
+    transition: box-shadow 0.3s;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+}
+.userTypeBox:hover {
+    box-shadow: 0 0 50px rgba(53, 53, 53, 0.2);
+}

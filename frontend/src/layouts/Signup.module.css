@@ -1,0 +1,11 @@
+.signup_head {
+    font-family: "Oxygen", sans-serif;
+    font-weight: 500;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+}
+
+.signupForm {
+    width: 55%;
+    max-width: 60%;
+}

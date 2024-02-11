@@ -1,0 +1,21 @@
+.intro{
+    width: 600px;
+}
+
+.intro_heading{
+    font-family: 'Spooky Hollow', sans-serif;    
+    font-size: 5rem;
+    letter-spacing: 5px;   
+    color: aqua;                                      
+}
+
+p{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 2.45rem;
+    letter-spacing: 2px;
+}
+
+a{
+    width: 200px;
+    color: #fff;
+}
