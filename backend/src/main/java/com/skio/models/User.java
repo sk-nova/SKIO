@@ -1,0 +1,62 @@
+package com.skio.models;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.Email;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Entity
+@Table(name = "users")
+@NoArgsConstructor
+@Getter
+@Setter
+public class User extends BaseEntity{
+	@Column(length=20)
+	private String userName;
+	@Column(length=20)
+	private String firstName;
+	@Column(length=20)
+	private String lastName;
+	@Email
+	@Column(length = 100, unique = true)
+	private String email;
+	@Column(length = 50, nullable = false)
+	private String password;
+	@Column(length=13)
+	private String contact;
+	@Column(length=20)
+	private String role;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "team_id", nullable = false)
+	private Team team;
+	
+	public User(String userName, String firstName, String lastName, @Email String email, String password,
+			String contact, String role) {
+		super();
+		this.userName = userName;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.password = password;
+		this.contact = contact;
+		this.role = role;
+	}
+
+	@Override
+	public String toString() {
+		return "User [id="+ getId() +" ,userName=" + userName + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
+				+ ", password=" + password + ", contact=" + contact + ", role=" + role + "]";
+	}
+	
+	
+	
+	
+	
+
+}
