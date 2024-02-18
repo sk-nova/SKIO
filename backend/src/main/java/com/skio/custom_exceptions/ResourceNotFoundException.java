@@ -1,4 +1,4 @@
-package custom_exceptions;
+package com.skio.custom_exceptions;
 
 public class ResourceNotFoundException extends RuntimeException{
 	public ResourceNotFoundException(String msg) {

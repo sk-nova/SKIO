@@ -1,4 +1,4 @@
-package custom_exceptions;
+package com.skio.custom_exceptions;
 
 public class ApiException extends RuntimeException{
 	
