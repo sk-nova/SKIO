@@ -1,10 +1,14 @@
 package com.skio.models;
 
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import lombok.Getter;
@@ -19,22 +23,35 @@ import lombok.Setter;
 public class User extends BaseEntity{
 	@Column(length=20)
 	private String userName;
+	
 	@Column(length=20)
 	private String firstName;
+	
 	@Column(length=20)
 	private String lastName;
-	@Email
+	
+	//@Email
 	@Column(length = 100, unique = true)
 	private String email;
+	
 	@Column(length = 50, nullable = false)
 	private String password;
+	
 	@Column(length=13)
 	private String contact;
+	
 	@Column(length=20)
 	private String role;
+	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "team_id", nullable = false)
 	private Team team;
+	
+	@OneToMany(mappedBy = "reportedBy", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Bug> reportedBugs;
+	
+	@OneToMany(mappedBy = "assignedTo", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Bug> assignedBugs;
 	
 	public User(String userName, String firstName, String lastName, @Email String email, String password,
 			String contact, String role) {
@@ -54,9 +71,4 @@ public class User extends BaseEntity{
 				+ ", password=" + password + ", contact=" + contact + ", role=" + role + "]";
 	}
 	
-	
-	
-	
-	
-
 }
