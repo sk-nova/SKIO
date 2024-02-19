@@ -1,7 +1,9 @@
 package com.skio.models;
 
 import java.time.LocalDate;
+import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -9,33 +11,42 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name = "projects")
+@Getter
+@Setter
+@NoArgsConstructor
 public class Project extends BaseEntity{
+	
 	@Column(length=20)
 	private String title;
+	
 	@Column(length=20)
 	private String description;
+	
 	@Column(name="start_date")
 	private LocalDate assignedDate;
+	
 	@Column(name="end_date")
 	private LocalDate endDate;
+	
 	@Enumerated(EnumType.STRING) // varchar
 	@Column(length = 20)
 	private ProjectType type;
+	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "team_id", nullable = false)
 	private Team team;
-	
-	public String getTitle() {
-		return title;
-	}
-	
-	public Project() {
-		
-	}
+
+	@OneToMany(mappedBy = "project", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Bug> bugsFound;
+
 	public Project(String name, String description, LocalDate assignedDate, LocalDate endDate, ProjectType type) {
 		super();
 		this.title = name;
@@ -45,39 +56,6 @@ public class Project extends BaseEntity{
 		this.type = type;
 	}
 	
-	public void setTitle(String name) {
-		this.title = name;
-	}
-	public String getDescription() {
-		return description;
-	}
-	public void setDescription(String description) {
-		this.description = description;
-	}
-	public LocalDate getAssignedDate() {
-		return assignedDate;
-	}
-	public void setAssignedDate(LocalDate assignedDate) {
-		this.assignedDate = assignedDate;
-	}
-	public LocalDate getEndDate() {
-		return endDate;
-	}
-	public void setEndDate(LocalDate endDate) {
-		this.endDate = endDate;
-	}
-	public ProjectType getType() {
-		return type;
-	}
-	public void setType(ProjectType type) {
-		this.type = type;
-	}
-	public Team getTeam() {
-		return team;
-	}
-	public void setTeam(Team team) {
-		this.team = team;
-	}
 	
 	@Override
 	public int hashCode() {

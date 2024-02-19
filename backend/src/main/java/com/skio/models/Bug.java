@@ -37,6 +37,10 @@ public class Bug extends BaseEntity{
 	private LocalDateTime reportedDateAndTime;
 	
 	@ManyToOne
+	@JoinColumn(name="project_id")
+	private Project project;
+	
+	@ManyToOne
     @JoinColumn(name = "reporter_id")
 	private User reportedBy;
 	
