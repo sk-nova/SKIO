@@ -16,50 +16,50 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skio.dto.ApiResponse;
-import com.skio.dto.UserRespDto;
-import com.skio.models.User;
-import com.skio.services.UserService;
+import com.skio.models.Bug;
+import com.skio.services.BugService;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/bugs")
 @CrossOrigin(origins = "http://localhost:5173")
-public class UserController {
-	@Autowired(required = true)
-	private UserService userServ;
+public class BugController {
 	
-	public UserController() {
-		System.out.println("in user controller");
+	@Autowired(required = true)
+	private BugService bugServ;
+	
+	public BugController() {
+		System.out.println("in bug controller");
 	}
 	
 	@GetMapping
-	public List<UserRespDto> listAllUsers(){
-		return userServ.getAllUsers();
+	public List<Bug> listAllBugs(){
+		return bugServ.getAllBugs();
 	}
 	
 	@PostMapping
-	public User addUserDetails(@RequestBody User newUser) {
-		return userServ.addUserDetails(newUser);
+	public Bug addBugDetails(@RequestBody Bug newBug) {
+		return bugServ.addBugDetails(newBug);
 	}
 	
-	@DeleteMapping("{/userId}")
-	public ResponseEntity<?> deleteUserDetails(@PathVariable Long userId){
-		System.out.println("in del user id: " + userId);
+	@DeleteMapping("{/bugId}")
+	public ResponseEntity<?> deleteBugDetails(@PathVariable Long bugId){
+		System.out.println("in del bug id: " + bugId);
 		try {
-			return ResponseEntity.status(HttpStatus.OK).body(new ApiResponse(userServ.deleteUserDetails(userId)));
+			return ResponseEntity.status(HttpStatus.OK).body(new ApiResponse(bugServ.deleteBugDetails(bugId)));
 		} catch (Exception e) {
 			System.out.println(e);
 			return new ResponseEntity<>(new ApiResponse(e.getMessage()), HttpStatus.NOT_FOUND);
 		}
 	}
 	
-	@GetMapping("/userId")
-	public User getUserDetails(@PathVariable Long userId) {
-		return userServ.getUserDetails(userId);
+	@GetMapping("/bugId")
+	public Bug getBugDetails(@PathVariable Long bugId) {
+		return bugServ.getBugDetails(bugId);
 	}
 	
 	@PutMapping
-	public User updateUserDetails(@RequestBody User user) {
-		return userServ.updateUserDetails(user);
+	public Bug updateBugDetails(@RequestBody Bug bug) {
+		return bugServ.updateBugDetails(bug);
 	}
 	
 }

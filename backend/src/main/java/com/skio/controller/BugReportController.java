@@ -16,50 +16,49 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skio.dto.ApiResponse;
-import com.skio.dto.UserRespDto;
-import com.skio.models.User;
-import com.skio.services.UserService;
+import com.skio.models.BugReport;
+import com.skio.services.BugReportService;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/bugReport-report")
 @CrossOrigin(origins = "http://localhost:5173")
-public class UserController {
+public class BugReportController {
 	@Autowired(required = true)
-	private UserService userServ;
+	private BugReportService bugReportServ;
 	
-	public UserController() {
-		System.out.println("in user controller");
+	public BugReportController() {
+		System.out.println("in bugReport controller");
 	}
 	
 	@GetMapping
-	public List<UserRespDto> listAllUsers(){
-		return userServ.getAllUsers();
+	public List<BugReport> listAllBugReports(){
+		return bugReportServ.getAllBugReports();
 	}
 	
 	@PostMapping
-	public User addUserDetails(@RequestBody User newUser) {
-		return userServ.addUserDetails(newUser);
+	public BugReport addBugReportDetails(@RequestBody BugReport newBugReport) {
+		return bugReportServ.addBugReportDetails(newBugReport);
 	}
 	
-	@DeleteMapping("{/userId}")
-	public ResponseEntity<?> deleteUserDetails(@PathVariable Long userId){
-		System.out.println("in del user id: " + userId);
+	@DeleteMapping("{/bugReportId}")
+	public ResponseEntity<?> deleteBugReportDetails(@PathVariable Long bugReportId){
+		System.out.println("in del bugReport id: " + bugReportId);
 		try {
-			return ResponseEntity.status(HttpStatus.OK).body(new ApiResponse(userServ.deleteUserDetails(userId)));
+			return ResponseEntity.status(HttpStatus.OK).body(new ApiResponse(bugReportServ.deleteBugReportDetails(bugReportId)));
 		} catch (Exception e) {
 			System.out.println(e);
 			return new ResponseEntity<>(new ApiResponse(e.getMessage()), HttpStatus.NOT_FOUND);
 		}
 	}
 	
-	@GetMapping("/userId")
-	public User getUserDetails(@PathVariable Long userId) {
-		return userServ.getUserDetails(userId);
+	@GetMapping("/bugReportId")
+	public BugReport getBugReportDetails(@PathVariable Long bugReportId) {
+		return bugReportServ.getBugReportDetails(bugReportId);
 	}
 	
 	@PutMapping
-	public User updateUserDetails(@RequestBody User user) {
-		return userServ.updateUserDetails(user);
+	public BugReport updateBugReportDetails(@RequestBody BugReport bugReport) {
+		return bugReportServ.updateBugReportDetails(bugReport);
 	}
-	
+
 }

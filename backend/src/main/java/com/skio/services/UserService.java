@@ -11,4 +11,10 @@ public interface UserService {
 
 	User addUserDetails(User newUser);
 
+	String deleteUserDetails(Long userId);
+
+	User getUserDetails(Long userId);
+
+	User updateUserDetails(User user);
+
 }
