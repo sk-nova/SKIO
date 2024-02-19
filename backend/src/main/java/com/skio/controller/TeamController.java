@@ -37,7 +37,7 @@ public class TeamController {
 	}
 	
 	//get team details by id
-	@GetMapping("/{teamId")
+	@GetMapping("/{teamId}")
 	public Team getTeamDetails(@PathVariable Long teamId) {
 		return teamServ.getById(teamId);
 	}

@@ -42,7 +42,7 @@ public class ProjectController {
 		return projectService.addProjectDetails(newProject);
 	}
 	
-	@DeleteMapping("{/ProjectId}")
+	@DeleteMapping("/{ProjectId}")
 	public ResponseEntity<?> deleteProjectDetails(@PathVariable Long ProjectId){
 		System.out.println("in del Project id: " + ProjectId);
 		try {
@@ -53,7 +53,7 @@ public class ProjectController {
 		}
 	}
 	
-	@GetMapping("/ProjectId")
+	@GetMapping("/{ProjectId}")
 	public Project getProjectDetails(@PathVariable Long ProjectId) {
 		return projectService.getProjectDetails(ProjectId);
 	}

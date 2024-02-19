@@ -18,8 +18,8 @@ public class BugServiceImpl implements BugService {
 
 	@Autowired
 	private BugDao bugDao;
-	@Autowired
-	private ModelMapper mapper;
+//	@Autowired
+//	private ModelMapper mapper;
 	
 	@Override
 	public List<Bug> getAllBugs() {

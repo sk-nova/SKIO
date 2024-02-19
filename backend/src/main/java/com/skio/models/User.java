@@ -64,6 +64,27 @@ public class User extends BaseEntity{
 		this.contact = contact;
 		this.role = role;
 	}
+	
+	//helper methods - reported bugs and assigned bugs
+	public void addReportedBugs(Bug bug){
+		this.reportedBugs.add(bug);
+		bug.setReportedBy(this);
+	}
+	
+	public void addAssignedBugs(Bug bug) {
+		this.assignedBugs.add(bug);
+		bug.setAssignedTo(this);
+	}
+	
+	public void removeReportedBugs(Bug bug){
+		this.reportedBugs.remove(bug);
+		bug.setReportedBy(null);
+	}
+	
+	public void removeAssignedBugs(Bug bug) {
+		this.assignedBugs.remove(bug);
+		bug.setAssignedTo(null);
+	}
 
 	@Override
 	public String toString() {

@@ -40,7 +40,7 @@ public class BugReportController {
 		return bugReportServ.addBugReportDetails(newBugReport);
 	}
 	
-	@DeleteMapping("{/bugReportId}")
+	@DeleteMapping("/{bugReportId}")
 	public ResponseEntity<?> deleteBugReportDetails(@PathVariable Long bugReportId){
 		System.out.println("in del bugReport id: " + bugReportId);
 		try {
@@ -51,7 +51,7 @@ public class BugReportController {
 		}
 	}
 	
-	@GetMapping("/bugReportId")
+	@GetMapping("/{bugReportId}")
 	public BugReport getBugReportDetails(@PathVariable Long bugReportId) {
 		return bugReportServ.getBugReportDetails(bugReportId);
 	}

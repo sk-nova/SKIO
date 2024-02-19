@@ -56,6 +56,16 @@ public class Project extends BaseEntity{
 		this.type = type;
 	}
 	
+	//helper methods
+	public void addBugs(Bug bug) {
+		this.bugsFound.add(bug);
+		bug.setProject(this);
+	}
+	
+	public void removeBugs(Bug bug) {
+		this.bugsFound.remove(bug);
+		bug.setProject(null);
+	}
 	
 	@Override
 	public int hashCode() {

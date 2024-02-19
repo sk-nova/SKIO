@@ -41,7 +41,7 @@ public class BugController {
 		return bugServ.addBugDetails(newBug);
 	}
 	
-	@DeleteMapping("{/bugId}")
+	@DeleteMapping("/{bugId}")
 	public ResponseEntity<?> deleteBugDetails(@PathVariable Long bugId){
 		System.out.println("in del bug id: " + bugId);
 		try {
@@ -52,7 +52,7 @@ public class BugController {
 		}
 	}
 	
-	@GetMapping("/bugId")
+	@GetMapping("/{bugId}")
 	public Bug getBugDetails(@PathVariable Long bugId) {
 		return bugServ.getBugDetails(bugId);
 	}

@@ -8,10 +8,14 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name = "teams")
+@Getter
+@Setter
 @NoArgsConstructor
 public class Team extends BaseEntity{
 	@Column(length = 30,unique = true)
@@ -23,7 +27,7 @@ public class Team extends BaseEntity{
 	
 	//modelling with a join table
 	@OneToMany(mappedBy = "team", cascade = CascadeType.ALL)
-	private Project project;
+	private List<Project> projects;
 	
 	
 	public Team(String teamName, int noOfMembers) {
@@ -32,37 +36,7 @@ public class Team extends BaseEntity{
 		this.noOfMembers = noOfMembers;
 	}
 	
-	public String getTeamName() {
-		return name;
-	}
-
-	public void setTeamName(String teamName) {
-		this.name = teamName;
-	}
-
-	public int getNoOfMembers() {
-		return noOfMembers;
-	}
-
-	public void setNoOfMembers(int noOfMembers) {
-		this.noOfMembers = noOfMembers;
-	}
-
-	public List<User> getUsers() {
-		return users;
-	}
-
-	public void setUsers(List<User> users) {
-		this.users = users;
-	}
-
-	public Project getProject() {
-		return project;
-	}
-
-	public void setProject(Project project) {
-		this.project = project;
-	}
+	
 	
 	//helper methods
 	public void addUser(User u) {
@@ -73,6 +47,16 @@ public class Team extends BaseEntity{
 	public void removeUser(User u) {
 		this.users.remove(u);
 		u.setTeam(null);
+	}
+	
+	public void addProject(Project project) {
+		this.projects.add(project);
+		project.setTeam(this);
+	}
+	
+	public void removeProject(Project project) {
+		this.projects.remove(project);
+		project.setTeam(null);
 	}
 
 	@Override

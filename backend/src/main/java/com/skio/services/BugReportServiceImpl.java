@@ -2,7 +2,7 @@ package com.skio.services;
 
 import java.util.List;
 
-import org.modelmapper.ModelMapper;
+//import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,8 +16,8 @@ import com.skio.models.BugReport;
 public class BugReportServiceImpl implements BugReportService {
 	@Autowired
 	private BugReportDao bugReportDao;
-	@Autowired
-	private ModelMapper mapper;
+//	@Autowired
+//	private ModelMapper mapper;
 	
 	@Override
 	public List<BugReport> getAllBugReports() {

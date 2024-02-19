@@ -41,7 +41,7 @@ public class UserController {
 		return userServ.addUserDetails(newUser);
 	}
 	
-	@DeleteMapping("{/userId}")
+	@DeleteMapping("/{userId}")
 	public ResponseEntity<?> deleteUserDetails(@PathVariable Long userId){
 		System.out.println("in del user id: " + userId);
 		try {
@@ -52,7 +52,7 @@ public class UserController {
 		}
 	}
 	
-	@GetMapping("/userId")
+	@GetMapping("/{userId}")
 	public User getUserDetails(@PathVariable Long userId) {
 		return userServ.getUserDetails(userId);
 	}
