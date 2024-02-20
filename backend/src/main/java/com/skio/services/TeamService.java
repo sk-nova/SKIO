@@ -1,18 +1,19 @@
 package com.skio.services;
 
+import com.skio.dto.TeamReqDto;
 import com.skio.dto.TeamRespDto;
 import com.skio.models.Team;
 import java.util.*;
 
 public interface TeamService {
 
-	List<TeamRespDto> getAllTeams();
+	List<TeamReqDto> getAllTeams();
 
-	Team addTeamDetails(TeamRespDto newTeam);
+	Team addTeamDetails(TeamReqDto newTeam);
 
-	Team getById(Long teamId);
+	TeamReqDto getById(Long teamId);
 
-	Team updateTeamDetails(Team t);
+	TeamRespDto updateTeamDetails(TeamRespDto t);
 
 	String deleteTeamDetails(Long teamId);
 

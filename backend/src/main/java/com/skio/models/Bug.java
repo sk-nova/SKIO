@@ -7,6 +7,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
@@ -36,15 +37,15 @@ public class Bug extends BaseEntity{
 	@Temporal(TemporalType.TIMESTAMP)
 	private LocalDateTime reportedDateAndTime;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="project_id")
 	private Project project;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "reporter_id")
 	private User reportedBy;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "assignee_id")
 	private User assignedTo;
 	
@@ -66,7 +67,5 @@ public class Bug extends BaseEntity{
 				+ ", reportedDateAndTime="+ reportedDateAndTime
 				+ "]";
 	}
-	
-	
 	
 }

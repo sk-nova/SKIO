@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.skio.custom_exceptions.ResourceNotFoundException;
 import com.skio.dao.TeamDao;
+import com.skio.dto.TeamReqDto;
 import com.skio.dto.TeamRespDto;
 import com.skio.models.Team;
 
@@ -24,30 +25,37 @@ public class TeamServiceImpl implements TeamService {
 
 	
 	@Override
-	public List<TeamRespDto> getAllTeams() {
+	public List<TeamReqDto> getAllTeams() {
 		
 		return teamDao.findAll()
 				.stream()
-				.map(t -> mapper.map(t, TeamRespDto.class))
+				.map(t -> mapper.map(t, TeamReqDto.class))
 				.collect(Collectors.toList());
 	}
 	
 	@Override
-	public Team getById(Long teamId) {
-		return teamDao.findById(teamId).orElseThrow(() -> new ResourceNotFoundException("Invalid team id!!!"));
+	public TeamReqDto getById(Long teamId) {
+		Team team = teamDao.findById(teamId).orElseThrow(() -> new ResourceNotFoundException("Invalid team id!!!"));
+		
+		TeamReqDto teamResp = mapper.map(team, TeamReqDto.class);
+		
+		
+		
+		return teamResp;
 	}
 	
 	@Override
-	public Team addTeamDetails(TeamRespDto newTeam) {
+	public Team addTeamDetails(TeamReqDto newTeam) {
 		// TODO Auto-generated method stub
 		Team team = mapper.map(newTeam,Team.class);
 		return teamDao.save(team);
 	}
 	
 	@Override
-	public Team updateTeamDetails(Team t) {
-		// TODO Auto-generated method stub
-		return teamDao.save(t);
+	public TeamRespDto updateTeamDetails(TeamRespDto t) {
+		Team team = mapper.map(t, Team.class);
+		teamDao.save(team);
+		return t;
 	}
 	
 	@Override

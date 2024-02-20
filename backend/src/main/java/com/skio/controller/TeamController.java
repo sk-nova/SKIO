@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.skio.services.TeamService;
 import com.skio.dto.ApiResponse;
+import com.skio.dto.TeamReqDto;
 import com.skio.dto.TeamRespDto;
 import com.skio.models.Team;
 
@@ -33,24 +34,24 @@ public class TeamController {
 	
 	//get all teams
 	@GetMapping
-	public List<TeamRespDto> listAllTeams(){
+	public List<TeamReqDto> listAllTeams(){
 		return teamServ.getAllTeams();
 	}
 	
 	//get team details by id
 	@GetMapping("/{teamId}")
-	public Team getTeamDetails(@PathVariable Long teamId) {
+	public TeamReqDto getTeamDetails(@PathVariable Long teamId) {
 		return teamServ.getById(teamId);
 	}
 	
 	//add new Team
 	@PostMapping
-	public Team addTeamDetails(TeamRespDto newTeam) {
+	public Team addTeamDetails(TeamReqDto newTeam) {
 		return teamServ.addTeamDetails(newTeam);
 	}
 	
 	@PutMapping
-	public Team updateTeamDetails(@RequestBody Team t) {
+	public TeamRespDto updateTeamDetails(@RequestBody TeamRespDto t) {
 		return teamServ.updateTeamDetails(t);
 	}
 	

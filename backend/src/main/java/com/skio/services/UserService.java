@@ -10,12 +10,12 @@ public interface UserService {
 	
 	List<UserRespDto> getAllUsers();
 
-	User addUserDetails(UserReqDto newUser);
+	UserReqDto addUserDetails(UserReqDto newUser);
 
 	String deleteUserDetails(Long userId);
 
 	User getUserDetails(Long userId);
 
-	User updateUserDetails(User user);
+	User updateUserDetails(UserReqDto user);
 
 }

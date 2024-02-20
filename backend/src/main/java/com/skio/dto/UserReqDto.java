@@ -1,5 +1,7 @@
 package com.skio.dto;
 
+import java.util.List;
+
 import jakarta.validation.constraints.Email;
 import lombok.Getter;
 import lombok.Setter;
@@ -18,4 +20,6 @@ public class UserReqDto {
 	private String contact;
 	private String role;
 	private Long teamId;
+	private List<BugRespDto> assignedBug;
+	private List<BugRespDto> reportedBug;
 }

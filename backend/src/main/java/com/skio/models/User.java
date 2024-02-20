@@ -63,6 +63,7 @@ public class User extends BaseEntity{
 		this.password = password;
 		this.contact = contact;
 		this.role = role;
+//		this.team.setNoOfMembers(this.team.getNoOfMembers()+1);
 	}
 	
 	//helper methods - reported bugs and assigned bugs

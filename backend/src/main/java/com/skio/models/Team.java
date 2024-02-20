@@ -37,17 +37,17 @@ public class Team extends BaseEntity{
 		this.noOfMembers = noOfMembers;
 	}
 	
-	
-	
 	//helper methods
 	public void addUser(User u) {
 		this.users.add(u);
-	    u.setTeam(this);
+		u.setTeam(this);
+		this.noOfMembers = users.size();
 	}
 	
 	public void removeUser(User u) {
 		this.users.remove(u);
 		u.setTeam(null);
+		this.noOfMembers = users.size();
 	}
 	
 	public void addProject(Project project) {

@@ -38,7 +38,7 @@ public class UserController {
 	}
 	
 	@PostMapping
-	public User addUserDetails(@RequestBody UserReqDto newUser) {
+	public UserReqDto addUserDetails(@RequestBody UserReqDto newUser) {
 		return userServ.addUserDetails(newUser);
 	}
 	
@@ -59,7 +59,7 @@ public class UserController {
 	}
 	
 	@PutMapping
-	public User updateUserDetails(@RequestBody User user) {
+	public User updateUserDetails(@RequestBody UserReqDto user) {
 		return userServ.updateUserDetails(user);
 	}
 	

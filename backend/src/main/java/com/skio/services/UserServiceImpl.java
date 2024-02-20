@@ -36,12 +36,20 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	@Override
-	public User addUserDetails(UserReqDto newUser) {
+	public UserReqDto addUserDetails(UserReqDto newUser) {
 		
 		User user = mapper.map(newUser, User.class); 
+		
+//		user.getTeam().setNoOfMembers(user.getTeam().getNoOfMembers()+1);
+		
 		Team team = teamDao.findById(newUser.getTeamId()).orElseThrow(() -> new ResourceNotFoundException("Team not found"));
-		team.addUser(user);
-		return userDao.save(user);
+		
+		user.setTeam(team);
+//		team.addUser(user);
+		
+		UserReqDto userResp = mapper.map(userDao.save(user), UserReqDto.class);
+//		
+		return userResp;
 		
 		//return detached entity to the User
 	}
@@ -61,8 +69,9 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	@Override
-	public User updateUserDetails(User user) {
+	public User updateUserDetails(UserReqDto newUser) {
 		// TODO Auto-generated method stub
+		User user = mapper.map(newUser, User.class);
 		return userDao.save(user);
 	}
 	
