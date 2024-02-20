@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skio.dto.ApiResponse;
+import com.skio.dto.UserReqDto;
 import com.skio.dto.UserRespDto;
 import com.skio.models.User;
 import com.skio.services.UserService;
@@ -37,7 +38,7 @@ public class UserController {
 	}
 	
 	@PostMapping
-	public User addUserDetails(@RequestBody User newUser) {
+	public User addUserDetails(@RequestBody UserReqDto newUser) {
 		return userServ.addUserDetails(newUser);
 	}
 	

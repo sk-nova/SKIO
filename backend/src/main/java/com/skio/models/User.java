@@ -43,7 +43,7 @@ public class User extends BaseEntity{
 	@Column(length=20)
 	private String role;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "team_id", nullable = false)
 	private Team team;
 	

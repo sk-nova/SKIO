@@ -9,15 +9,19 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.skio.custom_exceptions.ResourceNotFoundException;
+import com.skio.dao.TeamDao;
 import com.skio.dao.UserDao;
+import com.skio.dto.UserReqDto;
 import com.skio.dto.UserRespDto;
+import com.skio.models.Team;
 import com.skio.models.User;
 
 
 @Service
 @Transactional
 public class UserServiceImpl implements UserService {
-		
+	@Autowired
+	private TeamDao teamDao;
 	@Autowired
 	private UserDao userDao;
 	@Autowired
@@ -32,8 +36,13 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	@Override
-	public User addUserDetails(User newUser) {
-		return userDao.save(newUser);
+	public User addUserDetails(UserReqDto newUser) {
+		
+		User user = mapper.map(newUser, User.class); 
+		Team team = teamDao.findById(newUser.getTeamId()).orElseThrow(() -> new ResourceNotFoundException("Team not found"));
+		team.addUser(user);
+		return userDao.save(user);
+		
 		//return detached entity to the User
 	}
 	

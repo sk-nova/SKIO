@@ -1,6 +1,7 @@
 package com.skio.services;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.skio.custom_exceptions.ResourceNotFoundException;
 import com.skio.dao.TeamDao;
+import com.skio.dto.TeamRespDto;
 import com.skio.models.Team;
 
 @Service
@@ -18,14 +20,16 @@ public class TeamServiceImpl implements TeamService {
 	@Autowired
 	private TeamDao teamDao;
 	@Autowired
-//	private ModelMapper mappper;
+	private ModelMapper mapper;
 
 	
 	@Override
-	public List<Team> getAllTeams() {
+	public List<TeamRespDto> getAllTeams() {
 		
-		List<Team> teams = teamDao.findAll();
-		return teams;
+		return teamDao.findAll()
+				.stream()
+				.map(t -> mapper.map(t, TeamRespDto.class))
+				.collect(Collectors.toList());
 	}
 	
 	@Override
@@ -34,9 +38,10 @@ public class TeamServiceImpl implements TeamService {
 	}
 	
 	@Override
-	public Team addTeamDetails(Team newTeam) {
+	public Team addTeamDetails(TeamRespDto newTeam) {
 		// TODO Auto-generated method stub
-		return teamDao.save(newTeam);
+		Team team = mapper.map(newTeam,Team.class);
+		return teamDao.save(team);
 	}
 	
 	@Override
