@@ -2,6 +2,7 @@ package com.skio.controller;
 
 import java.util.List;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -40,7 +41,8 @@ public class ProjectController {
 	}
 	
 	@PostMapping
-	public Project addProjectDetails(@RequestBody Project newProject) {
+	public ProjectRespDto addProjectDetails(@RequestBody ProjectRespDto newProject) {
+		
 		return projectService.addProjectDetails(newProject);
 	}
 	

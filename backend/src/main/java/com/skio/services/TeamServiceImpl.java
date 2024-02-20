@@ -36,11 +36,7 @@ public class TeamServiceImpl implements TeamService {
 	@Override
 	public TeamReqDto getById(Long teamId) {
 		Team team = teamDao.findById(teamId).orElseThrow(() -> new ResourceNotFoundException("Invalid team id!!!"));
-		
-		TeamReqDto teamResp = mapper.map(team, TeamReqDto.class);
-		
-		
-		
+		TeamReqDto teamResp = mapper.map(team, TeamReqDto.class);		
 		return teamResp;
 	}
 	

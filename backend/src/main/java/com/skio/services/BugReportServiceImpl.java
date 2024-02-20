@@ -35,6 +35,7 @@ public class BugReportServiceImpl implements BugReportService {
 		// TODO Auto-generated method stub
 		if(bugReportDao.existsById(bugReportId)) {
 			bugReportDao.deleteById(bugReportId);
+			return "Bug Report deleted successfully.";
 		}
 		throw new ResourceNotFoundException("BugReport details cannot be deleted");
 	}

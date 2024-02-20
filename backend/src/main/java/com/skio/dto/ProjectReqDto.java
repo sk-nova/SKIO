@@ -14,6 +14,6 @@ public class ProjectReqDto {
 	private String title;
 	private String desciption;
 	private ProjectType type;
-	private Long team_id;
+	private Long teamId;
 	private List<BugRespDto> bugsFound;
 }

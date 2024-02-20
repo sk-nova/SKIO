@@ -1,9 +1,11 @@
 package com.skio.dto;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import com.skio.models.ProjectType;
 
+import jakarta.persistence.Column;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,7 +16,8 @@ public class ProjectRespDto {
 	private String title;
 	private String desciption;
 	private ProjectType type;
-	private Long team_id;
-	
+	private LocalDate assignedDate;
+	private LocalDate endDate;
+	private Long teamId;
 	
 }

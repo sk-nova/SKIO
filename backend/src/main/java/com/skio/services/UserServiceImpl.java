@@ -72,6 +72,7 @@ public class UserServiceImpl implements UserService {
 		// TODO Auto-generated method stub
 		if (userDao.existsById(userId)) {
 			userDao.deleteById(userId);
+			return "User deleted successfully";
 		}
 		throw new ResourceNotFoundException("User details cannot be deleted");
 	}

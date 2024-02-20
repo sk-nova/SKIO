@@ -37,6 +37,7 @@ public class BugServiceImpl implements BugService {
 		// TODO Auto-generated method stub
 		if(bugDao.existsById(bugId)) {
 			bugDao.deleteById(bugId);
+			return "Bug deleted successfully";
 		}
 		throw new ResourceNotFoundException("Bug details cannot be deleted");
 	}

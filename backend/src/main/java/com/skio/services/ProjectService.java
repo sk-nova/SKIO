@@ -10,7 +10,7 @@ public interface ProjectService {
 
 	List<ProjectRespDto> getAllProjects();
 
-	Project addProjectDetails(Project newProject);
+	ProjectRespDto addProjectDetails(ProjectRespDto newProject);
 
 	String deleteProjectDetails(Long projectId);
 
