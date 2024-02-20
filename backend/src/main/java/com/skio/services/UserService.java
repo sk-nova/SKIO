@@ -14,7 +14,7 @@ public interface UserService {
 
 	String deleteUserDetails(Long userId);
 
-	User getUserDetails(Long userId);
+	UserRespDto getUserDetails(Long userId);
 
 	User updateUserDetails(UserReqDto user);
 

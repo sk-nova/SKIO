@@ -64,8 +64,9 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	@Override
-	public User getUserDetails(Long userId) {
-		return userDao.findById(userId).orElseThrow(() -> new ResourceNotFoundException("Invalid User Id!!"));
+	public UserRespDto getUserDetails(Long userId) {
+		User u = userDao.findById(userId).orElseThrow(() -> new ResourceNotFoundException("Invalid User Id!!"));
+		return mapper.map(u, UserRespDto.class);
 	}
 	
 	@Override

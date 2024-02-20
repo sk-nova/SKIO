@@ -2,7 +2,6 @@ package com.skio.dto;
 
 import java.util.List;
 
-import jakarta.validation.constraints.Email;
 import lombok.Getter;
 import lombok.Setter;
 

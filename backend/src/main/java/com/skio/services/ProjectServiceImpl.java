@@ -1,7 +1,9 @@
 package com.skio.services;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
+import org.apache.catalina.mapper.Mapper;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,6 +11,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.skio.custom_exceptions.ResourceNotFoundException;
 import com.skio.dao.ProjectDao;
+import com.skio.dto.ProjectReqDto;
+import com.skio.dto.ProjectRespDto;
 import com.skio.models.Project;
 
 @Service
@@ -17,12 +21,15 @@ public class ProjectServiceImpl implements ProjectService{
 	
 	@Autowired
 	private ProjectDao projectDao;
-//	@Autowired
-//	private ModelMapper mapper;
+	@Autowired
+	private ModelMapper mapper;
 	
 	@Override
-	public List<Project> getAllProjects() {
-		return projectDao.findAll();
+	public List<ProjectRespDto> getAllProjects() {
+		return projectDao.findAll()
+				.stream()
+				.map(e -> mapper.map(e, ProjectRespDto.class))
+				.collect(Collectors.toList());
 	}
 	
 	@Override
@@ -41,8 +48,9 @@ public class ProjectServiceImpl implements ProjectService{
 	}
 	
 	@Override
-	public Project getProjectDetails(Long projectId) {
-		return projectDao.findById(projectId).orElseThrow(() -> new ResourceNotFoundException("Invalid Project Id!!"));
+	public ProjectReqDto getProjectDetails(Long projectId) {
+		Project p = projectDao.findById(projectId).orElseThrow(() -> new ResourceNotFoundException("Invalid Project Id!!"));
+		return mapper.map(p, ProjectReqDto.class);
 	}
 	
 	@Override

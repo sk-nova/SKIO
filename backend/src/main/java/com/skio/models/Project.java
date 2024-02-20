@@ -24,10 +24,10 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Project extends BaseEntity{
 	
-	@Column(length=20)
+	@Column(length=50)
 	private String title;
 	
-	@Column(length=20)
+	@Column(length=200)
 	private String description;
 	
 	@Column(name="start_date")

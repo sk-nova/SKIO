@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skio.dto.ApiResponse;
+import com.skio.dto.ProjectReqDto;
+import com.skio.dto.ProjectRespDto;
 import com.skio.models.Project;
 import com.skio.services.ProjectService;
 
@@ -33,7 +35,7 @@ public class ProjectController {
 	}
 	
 	@GetMapping
-	public List<Project> listAllProjects(){
+	public List<ProjectRespDto> listAllProjects(){
 		return projectService.getAllProjects();
 	}
 	
@@ -54,7 +56,7 @@ public class ProjectController {
 	}
 	
 	@GetMapping("/{ProjectId}")
-	public Project getProjectDetails(@PathVariable Long ProjectId) {
+	public ProjectReqDto getProjectDetails(@PathVariable Long ProjectId) {
 		return projectService.getProjectDetails(ProjectId);
 	}
 	
