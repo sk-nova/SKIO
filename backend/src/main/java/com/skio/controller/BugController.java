@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skio.dto.ApiResponse;
+import com.skio.dto.BugRespDto;
 import com.skio.models.Bug;
 import com.skio.services.BugService;
 
@@ -32,12 +33,12 @@ public class BugController {
 	}
 	
 	@GetMapping
-	public List<Bug> listAllBugs(){
+	public List<BugRespDto> listAllBugs(){
 		return bugServ.getAllBugs();
 	}
 	
 	@PostMapping
-	public Bug addBugDetails(@RequestBody Bug newBug) {
+	public BugRespDto addBugDetails(@RequestBody BugRespDto newBug) {
 		return bugServ.addBugDetails(newBug);
 	}
 	
@@ -53,12 +54,12 @@ public class BugController {
 	}
 	
 	@GetMapping("/{bugId}")
-	public Bug getBugDetails(@PathVariable Long bugId) {
+	public BugRespDto getBugDetails(@PathVariable Long bugId) {
 		return bugServ.getBugDetails(bugId);
 	}
 	
 	@PutMapping
-	public Bug updateBugDetails(@RequestBody Bug bug) {
+	public BugRespDto updateBugDetails(@RequestBody BugRespDto bug) {
 		return bugServ.updateBugDetails(bug);
 	}
 	

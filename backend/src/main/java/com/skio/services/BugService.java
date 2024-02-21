@@ -2,18 +2,19 @@ package com.skio.services;
 
 import java.util.List;
 
+import com.skio.dto.BugRespDto;
 import com.skio.models.Bug;
 
 public interface BugService {
 
-	List<Bug> getAllBugs();
+	List<BugRespDto> getAllBugs();
 
-	Bug addBugDetails(Bug newBug);
+	BugRespDto addBugDetails(BugRespDto newBug);
 
 	String deleteBugDetails(Long bugId);
 
-	Bug getBugDetails(Long bugId);
+	BugRespDto getBugDetails(Long bugId);
 
-	Bug updateBugDetails(Bug bug);
+	BugRespDto updateBugDetails(BugRespDto bug);
 
 }
